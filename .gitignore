@@ -3,6 +3,7 @@ work/
 .nextflow/
 .nextflow*
 assets/references
+fastqc_trim
 
 #Index-files
 *.fasta.*
