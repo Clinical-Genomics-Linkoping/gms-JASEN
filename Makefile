@@ -9,8 +9,11 @@ MT="Mycobacterium tuberculosis"
 KP="Klebsiella pneumoniae"
 SA="Staphylococcus aureus"
 EC="Escherichia coli"
+CONT_NAME=jasen_2021-05-06.sif
+PROJECT_ROOT=/home/Hanna/Documents/CG-Linkoping/gms-JASEN
 
-SG=/usr/local/bin/singularity exec -B /home/Hanna/Documents/JASEN:/external -B /home/Hanna/Documents/JASEN/work:/out container/jasen_2021-04-15.sif prodigal -p single -t
+SG=/usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(PROJECT_ROOT)/work:/out container/$(CONT_NAME) prodigal -p single -t
+
 
 all: clear_files download_bacterial_genomes create_prodigal_trn_files uncompress_genomes
 
