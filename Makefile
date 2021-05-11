@@ -21,7 +21,7 @@ clear_files:
 	@echo ""
 	@echo "Raderar både nedladdade och träningsfilerna:"
 	@echo ""
-	@(rm -f $(RG)/* $(PT)/*)
+	@(rm -f $(RG)/*.gz $(RG)/*.fna $(PT)/*.trn)
 	@echo ""
 
 download_bacterial_genomes:
