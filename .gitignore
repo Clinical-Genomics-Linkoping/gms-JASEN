@@ -137,3 +137,20 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Miscellaneous
+test_spades-assembler
+
+# The used singularity image
+container/jasen_2021-05-06.sif
+
+# Input files
+assets/sequencing_data/*
+!assets/sequencing_data/README.md
+
+# Sequencing adapters
+assets/adapters/*
+!assets/adapters/README.md
+
+# Logs
+logs
