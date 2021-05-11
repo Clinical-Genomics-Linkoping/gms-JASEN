@@ -14,6 +14,13 @@ SG=/usr/local/bin/singularity exec -B /home/Hanna/Documents/JASEN:/external -B /
 
 all: clear_files download_bacterial_genomes create_prodigal_trn_files uncompress_genomes
 
+clear_files:
+	@echo ""
+	@echo "Raderar både nedladdade och träningsfilerna:"
+	@echo ""
+	@(rm -f $(RG)/* $(PT)/*)
+	@echo ""
+
 download_bacterial_genomes:
 	@echo ""
 	@echo "Laddar ner $(MT) refseq genomet, se mera info om genomet här: https://www.ncbi.nlm.nih.gov/assembly/GCF_000195955.2/"
@@ -48,13 +55,6 @@ download_bacterial_genomes:
 	md5sum $(RG)/Escherichia_coli_GCF_000008865.2_ASM886v2.fna.gz >> $(RG)/md5sums.txt
 	@echo ""
 
-
-uncompress_genomes:
-	zcat $(RG)/Mycobacterium_tuberculosis_GCF_000195955.2_ASM19595v2.fna.gz > $(RG)/Mycobacterium_tuberculosis_GCF_000195955.2_ASM19595v2.fna
-	zcat $(RG)/Klebsiella_pneumoniae_GCF_000240185.1_ASM24018v2.fna.gz > $(RG)/Klebsiella_pneumoniae_GCF_000240185.1_ASM24018v2.fna
-	zcat $(RG)/Staphylococcus_aureus_GCF_000013425.1_ASM1342v1.fna.gz > $(RG)/Staphylococcus_aureus_GCF_000013425.1_ASM1342v1.fna
-	zcat $(RG)/Escherichia_coli_GCF_000008865.2_ASM886v2.fna.gz > $(RG)/Escherichia_coli_GCF_000008865.2_ASM886v2.fna
-
 create_prodigal_trn_files:
 	@echo ""
 	@echo "Skapar prodigal träningsfiler från refseq genomen:"
@@ -75,9 +75,8 @@ create_prodigal_trn_files:
 	zcat $(RG)/Escherichia_coli_GCF_000008865.2_ASM886v2.fna.gz | $(SG) $(PT)/Escherichia_coli_GCF_000008865.2_ASM886v2.trn
 	@echo ""
 
-clear_files:
-	@echo ""
-	@echo "Raderar både nedladdade och träningsfilerna:"
-	@echo ""
-	@(rm -f $(RG)/* $(PT)/*)
-	@echo ""
+uncompress_genomes:
+	zcat $(RG)/Mycobacterium_tuberculosis_GCF_000195955.2_ASM19595v2.fna.gz > $(RG)/Mycobacterium_tuberculosis_GCF_000195955.2_ASM19595v2.fna
+	zcat $(RG)/Klebsiella_pneumoniae_GCF_000240185.1_ASM24018v2.fna.gz > $(RG)/Klebsiella_pneumoniae_GCF_000240185.1_ASM24018v2.fna
+	zcat $(RG)/Staphylococcus_aureus_GCF_000013425.1_ASM1342v1.fna.gz > $(RG)/Staphylococcus_aureus_GCF_000013425.1_ASM1342v1.fna
+	zcat $(RG)/Escherichia_coli_GCF_000008865.2_ASM886v2.fna.gz > $(RG)/Escherichia_coli_GCF_000008865.2_ASM886v2.fna
