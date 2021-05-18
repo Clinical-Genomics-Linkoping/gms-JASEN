@@ -9,6 +9,7 @@ INSTALL_DIR="dir/where/you/want/your/gms-JASEN/installation"
 cd "$INSTALL_DIR"
 git clone --recurse-submodules https://github.com/Clinical-Genomics-Linkoping/gms-JASEN.git
 cd gms-JASEN
+rm -r assets/prodigal_training_files/
 git checkout ro-implementation
 ```
 
