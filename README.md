@@ -5,8 +5,8 @@
 ### Clone and switch to `ro-implementation` branch
 
 ```bash
-PROJECT_ROOT="dir/where/you/want/your/gms-JASEN/installation"
-cd "$PROJECT_ROOT"
+INSTALL_DIR="dir/where/you/want/your/gms-JASEN/installation"
+cd "$INSTALL_DIR"
 git clone --recurse-submodules https://github.com/Clinical-Genomics-Linkoping/gms-JASEN.git
 cd gms-JASEN
 git checkout ro-implementation
