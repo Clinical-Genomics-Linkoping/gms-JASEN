@@ -50,10 +50,9 @@ The modifications can be done on lines between 73 and 89 in `nextflow.config`-fi
 ### Run the pipeline
 
 ```bash
-JASEN_INSTALL_DIR="/home/Hanna/Documents/CG-Linkoping/gms-JASEN/"
-cd "$JASEN_INSTALL_DIR"
 WORKDIR="$JASEN_INSTALL_DIR""work"
 mkdir "$WORKDIR"
+# Changes the name of the container according to your specific case
 CONT_NAME="jasen_2021-05-06.sif"
 IMAGE="$JASEN_INSTALL_DIR""container/""$CONT_NAME"
 
