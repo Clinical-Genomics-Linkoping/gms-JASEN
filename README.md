@@ -32,6 +32,15 @@ bash build_container.sh
 
 Note: Building of the container requires sudo privileges.
 
+### Download reference genomes and create prodigal training files
+
+```bash
+# Change this line to your specific case
+JASEN_INSTALL_DIR="/home/Hanna/Documents/CG-Linkoping/gms-JASEN/"
+cd "$JASEN_INSTALL_DIR"
+make
+```
+
 ## Usage
 
 ### Optional: Change amount of resources processes are allowed to use
