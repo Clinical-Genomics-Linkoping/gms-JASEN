@@ -1,5 +1,27 @@
 # gms-JASEN: Region Östergötland implementation
 
+<!-- TOC -->
+
+- [gms-JASEN: Region Östergötland implementation](#gms-jasen-region-Östergötland-implementation)
+    - [Installation](#installation)
+        - [Clone and switch to `ro-implementation` branch](#clone-and-switch-to-ro-implementation-branch)
+        - [Install Singularity](#install-singularity)
+        - [Create Singularity container](#create-singularity-container)
+        - [Download reference genomes and create prodigal training files](#download-reference-genomes-and-create-prodigal-training-files)
+        - [Move Fastq files and adapter sequences to `assets`](#move-fastq-files-and-adapter-sequences-to-assets)
+    - [Usage](#usage)
+        - [Optional: Change amount of resources processes are allowed to use](#optional-change-amount-of-resources-processes-are-allowed-to-use)
+        - [Run the pipeline](#run-the-pipeline)
+        - [Finding results](#finding-results)
+- [JASEN](#jasen)
+    - [Setup](#setup)
+    - [Singularity implementation](#singularity-implementation)
+        - [Image creation](#image-creation)
+        - [Image execution](#image-execution)
+    - [Conda implementation](#conda-implementation)
+
+<!-- /TOC -->
+
 ## Installation
 
 ### Clone and switch to `ro-implementation` branch
