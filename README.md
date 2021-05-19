@@ -63,6 +63,13 @@ cd "$JASEN_INSTALL_DIR"
 make
 ```
 
+### Move Fastq files and adapter sequences to `assets`
+
+```bash
+cp -r /home/Hanna/Documents/CG-Linkoping/gms-JASEN/assets/sequencing_data/Escherichia_coli_p1 /home/Hanna/Documents/gms-JASEN/assets/sequencing_data/
+cp /home/Hanna/Documents/CG-Linkoping/gms-JASEN/assets/adapters/qiaseq_adapters.fa  /home/Hanna/Documents/gms-JASEN/assets/adapters/
+```
+
 ## Usage
 
 ### Optional: Change amount of resources processes are allowed to use
