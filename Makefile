@@ -86,4 +86,5 @@ uncompress_genomes:
 
 make_tarball:
 	cp -Lr $(WD) spades_assembly
-	tar -xcvf spades_assembly.tar.gz spades_assembly
+	tar -zcvf spades_assembly.tar.gz spades_assembly
+	rm -fr spades_assembly
