@@ -1,5 +1,27 @@
 # gms-JASEN: Region Östergötland implementation
 
+<!-- TOC -->
+
+- [gms-JASEN: Region Östergötland implementation](#gms-jasen-region-Östergötland-implementation)
+    - [Installation](#installation)
+        - [Clone and switch to `ro-implementation` branch](#clone-and-switch-to-ro-implementation-branch)
+        - [Install Singularity](#install-singularity)
+        - [Create Singularity container](#create-singularity-container)
+        - [Download reference genomes and create prodigal training files](#download-reference-genomes-and-create-prodigal-training-files)
+        - [Move Fastq files and adapter sequences to `assets`](#move-fastq-files-and-adapter-sequences-to-assets)
+    - [Usage](#usage)
+        - [Optional: Change amount of resources processes are allowed to use](#optional-change-amount-of-resources-processes-are-allowed-to-use)
+        - [Run the pipeline](#run-the-pipeline)
+        - [Finding results](#finding-results)
+- [JASEN](#jasen)
+    - [Setup](#setup)
+    - [Singularity implementation](#singularity-implementation)
+        - [Image creation](#image-creation)
+        - [Image execution](#image-execution)
+    - [Conda implementation](#conda-implementation)
+
+<!-- /TOC -->
+
 ## Installation
 
 ### Clone and switch to `ro-implementation` branch
@@ -39,6 +61,13 @@ Note: Building of the container requires sudo privileges.
 JASEN_INSTALL_DIR="/home/Hanna/Documents/CG-Linkoping/gms-JASEN/"
 cd "$JASEN_INSTALL_DIR"
 make
+```
+
+### Move Fastq files and adapter sequences to `assets`
+
+```bash
+cp -r /home/Hanna/Documents/CG-Linkoping/gms-JASEN/assets/sequencing_data/Escherichia_coli_p1 /home/Hanna/Documents/gms-JASEN/assets/sequencing_data/
+cp /home/Hanna/Documents/CG-Linkoping/gms-JASEN/assets/adapters/qiaseq_adapters.fa  /home/Hanna/Documents/gms-JASEN/assets/adapters/
 ```
 
 ## Usage
