@@ -1,18 +1,23 @@
 # https://stackoverflow.com/a/55696820
-SHELL=/bin/bash
+SHELL = /bin/bash
 
 #FASTQS?=.github/data/fastqs/
-RG=assets/ref_genomes
-PT=assets/prodigal_training_files
+RG = assets/ref_genomes
+PT = assets/prodigal_training_files
 
-MT="Mycobacterium tuberculosis"
-KP="Klebsiella pneumoniae"
-SA="Staphylococcus aureus"
-EC="Escherichia coli"
-CONT_NAME=jasen_2021-05-06.sif
-PROJECT_ROOT=/home/Hanna/Documents/CG-Linkoping/gms-JASEN
+MT = "Mycobacterium tuberculosis"
+KP = "Klebsiella pneumoniae"
+SA = "Staphylococcus aureus"
+EC = "Escherichia coli"
+CONT_NAME = jasen_2021-05-06.sif
+PROJECT_ROOT = /home/Hanna/Documents/CG-Linkoping/gms-JASEN
 
-SG=/usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(PROJECT_ROOT)/work:/out container/$(CONT_NAME) prodigal -p single -t
+WORKDIR = $(PROJECT_ROOT)/work
+IMAGE = $(PROJECT_ROOT)/container/$(CONT_NAME)
+
+SG = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out container/$(CONT_NAME) prodigal -p single -t
+
+RUN = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out $(IMAGE) nextflow -C /external/nextflow.config run main.nf -profile local,singularity
 
 
 all: clear_files download_bacterial_genomes create_prodigal_trn_files uncompress_genomes
