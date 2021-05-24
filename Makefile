@@ -65,6 +65,9 @@ download_bacterial_genomes:
 
 create_prodigal_trn_files:
 	@echo ""
+	@echo "Skapar mapp för singularity körningen:"
+	@mkdir -p work
+	@echo ""
 	@echo "Skapar prodigal träningsfiler från refseq genomen:"
 	@echo ""
 	@echo "För $(MT):"
