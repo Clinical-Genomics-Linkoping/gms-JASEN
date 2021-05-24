@@ -12,12 +12,15 @@ EC = "Escherichia coli"
 CONT_NAME = jasen_2021-05-06.sif
 PROJECT_ROOT = /home/Hanna/Documents/CG-Linkoping/gms-JASEN
 
+GENOME_NAME = Escherichia_coli_GCF_000008865.2_ASM886v2
+INPUT_DIR = Escherichia_coli_p1
+
 WORKDIR = $(PROJECT_ROOT)/work
 IMAGE = $(PROJECT_ROOT)/container/$(CONT_NAME)
 
 SG = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out container/$(CONT_NAME) prodigal -p single -t
 
-RUN = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out $(IMAGE) nextflow -C /external/nextflow.config run main.nf -profile local,singularity
+RUN = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out $(IMAGE) nextflow -C /external/nextflow.config run main.nf -profile local,singularity --genome_name $(GENOME_NAME) --input_dir $(INPUT_DIR)
 
 
 all: clear_files download_bacterial_genomes create_prodigal_trn_files uncompress_genomes
