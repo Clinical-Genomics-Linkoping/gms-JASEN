@@ -96,3 +96,6 @@ make_tarball:
 	cp -Lr $(WD) spades_assembly
 	tar -zcvf spades_assembly.tar.gz spades_assembly
 	rm -fr spades_assembly
+
+run:
+	$(RUN)
