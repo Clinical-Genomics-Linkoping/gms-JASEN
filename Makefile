@@ -101,4 +101,5 @@ make_tarball:
 	rm -fr spades_assembly
 
 run:
+	@mkdir -p work
 	$(RUN)
