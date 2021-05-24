@@ -79,18 +79,12 @@ The modifications can be done on lines between 73 and 89 in `nextflow.config`-fi
 ### Run the pipeline
 
 ```bash
-WORKDIR="$JASEN_INSTALL_DIR""work"
-mkdir "$WORKDIR"
-# Changes the name of the container according to your specific case
-CONT_NAME="jasen_2021-05-06.sif"
-IMAGE="$JASEN_INSTALL_DIR""container/""$CONT_NAME"
-
-singularity exec -B "$JASEN_INSTALL_DIR":/external -B "$WORKDIR":/out "$IMAGE" nextflow -C /external/nextflow.config run main.nf -profile local,singularity
+make run
 ```
 
 ### Finding results
 
-The results can be found in ... 
+The results can be found in ...
 
 
 ---
