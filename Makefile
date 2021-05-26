@@ -13,21 +13,29 @@ CONT_NAME = jasen_2021-05-06.sif
 PROJECT_ROOT = /home/Hanna/Documents/CG-Linkoping/gms-JASEN
 
 #GENOME_NAME = Escherichia_coli_GCF_000008865.2_ASM886v2
-GENOME_NAME = Klebsiella_pneumoniae_GCF_000240185.1_ASM24018v2
+#GENOME_NAME = Klebsiella_pneumoniae_GCF_000240185.1_ASM24018v2
 #GENOME_NAME = Mycobacterium_tuberculosis_GCF_000195955.2_ASM19595v2
-#GENOME_NAME = Staphylococcus_aureus_GCF_000013425.1_ASM1342v1
+GENOME_NAME = Staphylococcus_aureus_GCF_000013425.1_ASM1342v1
+
 #INPUT_DIR = Escherichia_coli_p1
-INPUT_DIR = Klebsiella_pneumoniae_p1
-#INPUT_DIR = Mycobacterium_tuberculosis_p1
+#INPUT_DIR = Klebsiella_pneumoniae_p1
 #INPUT_DIR = saureus_p1
-#INPUT_DIR = saureus_p2
+#INPUT_DIR = Mycobacterium_tuberculosis_p1
+INPUT_DIR = saureus_p2
 
 WORKDIR = $(PROJECT_ROOT)/work
 IMAGE = $(PROJECT_ROOT)/container/$(CONT_NAME)
 
+# To which directory inside work/ should the results files be output?
+OUTPUT_PATH_IN_WORK_DIR = results
+# E.g. can change the default results directory name to the sample name instead
+# OUTPUT_PATH_IN_WORK_DIR = Klebsiella_pneumoniae_p1
+# Or it can be the same as input dir name:
+# OUTPUT_PATH_IN_WORK_DIR = $(INPUT_DIR)
+
 SG = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out container/$(CONT_NAME) prodigal -p single -t
 
-RUN = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out $(IMAGE) nextflow -C /external/nextflow.config run main.nf -profile local,singularity --genome_name $(GENOME_NAME) --input_dir $(INPUT_DIR)
+RUN = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out $(IMAGE) nextflow -C /external/nextflow.config run main.nf -profile local,singularity --genome_name $(GENOME_NAME) --input_dir $(INPUT_DIR) --output_path $(OUTPUT_PATH_IN_WORK_DIR)
 
 
 all: clear_files download_bacterial_genomes create_prodigal_trn_files uncompress_genomes
