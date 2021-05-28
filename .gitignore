@@ -142,8 +142,7 @@ dmypy.json
 test_spades-assembler
 
 # The used singularity image
-container/jasen_2021-05-06.sif
-container/jasen_2021-05-19.sif
+container/jasen_*.sif
 
 # Input files
 assets/sequencing_data/*
