@@ -110,11 +110,6 @@ uncompress_genomes:
 	zcat $(RG)/Staphylococcus_aureus_GCF_000013425.1_ASM1342v1.fna.gz > $(RG)/Staphylococcus_aureus_GCF_000013425.1_ASM1342v1.fna
 	zcat $(RG)/Escherichia_coli_GCF_000008865.2_ASM886v2.fna.gz > $(RG)/Escherichia_coli_GCF_000008865.2_ASM886v2.fna
 
-make_tarball:
-	cp -Lr $(WD) spades_assembly
-	tar -zcvf spades_assembly.tar.gz spades_assembly
-	rm -fr spades_assembly
-
 run:
 	@mkdir -p work
 	$(RUN)
