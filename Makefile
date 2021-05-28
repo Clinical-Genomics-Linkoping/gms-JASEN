@@ -19,19 +19,19 @@ GENOME_NAME = Staphylococcus_aureus_GCF_000013425.1_ASM1342v1
 
 #INPUT_DIR = Escherichia_coli_p1
 #INPUT_DIR = Klebsiella_pneumoniae_p1
-#INPUT_DIR = saureus_p1
+INPUT_DIR = saureus_p1
 #INPUT_DIR = Mycobacterium_tuberculosis_p1
-INPUT_DIR = saureus_p2
+#INPUT_DIR = saureus_p2
 
 WORKDIR = $(PROJECT_ROOT)/work
 IMAGE = $(PROJECT_ROOT)/container/$(CONT_NAME)
 
 # To which directory inside work/ should the results files be output?
-OUTPUT_PATH_IN_WORK_DIR = results
+#OUTPUT_PATH_IN_WORK_DIR = results
 # E.g. can change the default results directory name to the sample name instead
 # OUTPUT_PATH_IN_WORK_DIR = Klebsiella_pneumoniae_p1
 # Or it can be the same as input dir name:
-# OUTPUT_PATH_IN_WORK_DIR = $(INPUT_DIR)
+OUTPUT_PATH_IN_WORK_DIR = $(INPUT_DIR)
 
 SG = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out container/$(CONT_NAME) prodigal -p single -t
 
