@@ -9,7 +9,7 @@ MT = "Mycobacterium tuberculosis"
 KP = "Klebsiella pneumoniae"
 SA = "Staphylococcus aureus"
 EC = "Escherichia coli"
-CONT_NAME = jasen_2021-05-06.sif
+CONT_NAME = jasen_2021-05-28.sif
 PROJECT_ROOT = /home/Hanna/Documents/CG-Linkoping/gms-JASEN
 
 #GENOME_NAME = Escherichia_coli_GCF_000008865.2_ASM886v2
