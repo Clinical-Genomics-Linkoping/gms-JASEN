@@ -170,12 +170,15 @@ process ariba_resistancefind{
   file(database_initalization) from ariba_init
 
   output:
-  file 'motif_report.tsv' into ariba_output
+  tuple 'motif_report_resfinder.tsv', 'motif_report_local.tsv' into ariba_output
+  //file 'motif_report.tsv' into ariba_output
 
 
   """
-  ariba run --spades_options careful --force --threads ${task.cpus} ${params.aribadb} ${forward} ${reverse} outdir
-  mv outdir/report.tsv motif_report.tsv
+  ariba run --spades_options careful --force --threads ${task.cpus} ${params.aribadb}/resfinder/ ${forward} ${reverse} outdir
+  mv outdir/report.tsv motif_report_resfinder.tsv
+  ariba run --spades_options careful --force --threads ${task.cpus} ${params.aribadb}/local/ ${forward} ${reverse} outdir
+  mv outdir/report.tsv motif_report_local.tsv
   """
 }
 
@@ -186,14 +189,16 @@ process ariba_stats{
   cpus 1
 
   input:
-  file(report) from ariba_output
+  tuple report_resf, report_loc from ariba_output
+  //file(report) from ariba_output
 
   output:
-  tuple 'summary.csv', 'motif_report.json' into ariba_summary_output
+  tuple 'summary.csv', 'motif_report_resfinder.json', 'motif_report_local.json' into ariba_summary_output
 
   """
-  ariba summary --col_filter n --row_filter n summary ${report} 
-  python3 $baseDir/bin/tsv_to_json.py ${report} motif_report.json 
+  ariba summary --col_filter n --row_filter n summary ${report_resf} ${report_loc}
+  python3 $baseDir/bin/tsv_to_json.py ${report_resf} motif_report_resfinder.json
+  python3 $baseDir/bin/tsv_to_json.py ${report_loc} motif_report_local.json
   """
 }
 
@@ -529,23 +534,24 @@ process json_collection{
   input:
   file (mlstjson) from mlst_output
   file (multiqcjson) from multiqc_json
-  file (aribajson) from ariba_summary_output
+  //file (aribajson) from ariba_summary_output
+  tuple summary, motif_report_resfinder, motif_report_local from ariba_summary_output
   file (quastjson) from quast_result_json
   file (snpreport) from snp_json_output
   tuple (cgmlst_res, cgmlst_stats) from cgmlst_results
-  
+
   output:
-  tuple 'merged_report.json', mlstjson, multiqcjson, aribajson, quastjson, snpreport, cgmlst_res into json_collection
+  tuple 'merged_report.json', mlstjson, multiqcjson, motif_report_resfinder, motif_report_local, quastjson, snpreport, cgmlst_res into json_collection
+//  cat ${aribajson} >> merged_report.json
 
   """
   touch merged_reports.json
   cat ${mlstjson} >> merged_report.json
-  cat ${aribajson} >> merged_report.json
+  cat ${motif_report_resfinder} >> merged_report.json
+  cat ${motif_report_local} >> merged_report.json
   cat ${quastjson} >> merged_report.json
   cat ${snpreport} >> merged_report.json
   cat ${multiqcjson} >> merged_report.json
   cat ${cgmlst_res} >> merged_report.json
   """
 }
-
-
