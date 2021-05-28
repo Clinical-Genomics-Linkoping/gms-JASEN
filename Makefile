@@ -35,7 +35,7 @@ OUTPUT_PATH_IN_WORK_DIR = $(INPUT_DIR)
 
 SG = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out container/$(CONT_NAME) prodigal -p single -t
 
-RUN = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out $(IMAGE) nextflow -C /external/nextflow.config run main.nf -profile local,singularity --genome_name $(GENOME_NAME) --input_dir $(INPUT_DIR) --output_path $(OUTPUT_PATH_IN_WORK_DIR)
+RUN = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out $(IMAGE) nextflow -C /external/nextflow.config run main.nf -profile local,singularity --genome_name $(GENOME_NAME) --input_dir $(INPUT_DIR) --output_path $(OUTPUT_PATH_IN_WORK_DIR) -resume
 
 
 all: clear_files download_bacterial_genomes create_prodigal_trn_files uncompress_genomes
