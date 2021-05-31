@@ -82,6 +82,9 @@ The modifications can be done on lines between 73 and 89 in `nextflow.config`-fi
 make run
 ```
 
+The pipeline utilises [Resfinder](https://pubmed.ncbi.nlm.nih.gov/22782487/ 'DOI: 10.1093/jac/dks261') to identify acquired antimicrobial resistance genes.
+
+
 ### Finding results
 
 The results can be found in ...
