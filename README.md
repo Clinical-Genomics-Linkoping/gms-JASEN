@@ -87,8 +87,7 @@ The pipeline utilises [Resfinder](https://pubmed.ncbi.nlm.nih.gov/22782487/ 'DOI
 
 ### Finding results
 
-The results can be found in ...
-
+The results can be found in json format in `work/[input-fastq-dir-name]` directory. 
 
 ---
 
