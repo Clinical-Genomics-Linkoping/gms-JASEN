@@ -147,6 +147,7 @@ container/jasen_*.sif
 # Input files
 assets/sequencing_data/*
 !assets/sequencing_data/README.md
+!assets/sequencing_data/metadata.json
 
 # Sequencing adapters
 assets/adapters/*
