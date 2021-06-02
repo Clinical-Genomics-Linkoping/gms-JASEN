@@ -19,9 +19,9 @@ GENOME_NAME = Staphylococcus_aureus_GCF_000013425.1_ASM1342v1
 
 #INPUT_DIR = Escherichia_coli_p1
 #INPUT_DIR = Klebsiella_pneumoniae_p1
-INPUT_DIR = saureus_p1
+#INPUT_DIR = saureus_p1
 #INPUT_DIR = Mycobacterium_tuberculosis_p1
-#INPUT_DIR = saureus_p2
+INPUT_DIR = saureus_p2
 
 WORKDIR = $(PROJECT_ROOT)/work
 IMAGE = $(PROJECT_ROOT)/container/$(CONT_NAME)
@@ -37,6 +37,9 @@ SG = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):
 
 RUN = /usr/local/bin/singularity exec -B $(PROJECT_ROOT):/external -B $(WORKDIR):/out $(IMAGE) nextflow -C /external/nextflow.config run main.nf -profile local,singularity --genome_name $(GENOME_NAME) --input_dir $(INPUT_DIR) --output_path $(OUTPUT_PATH_IN_WORK_DIR) -resume
 
+UPSTR_NAME = origin
+UPSTR_BRANCH = main
+CURR_BRANCH = local_aribadb
 
 all: clear_files download_bacterial_genomes create_prodigal_trn_files uncompress_genomes
 
@@ -113,3 +116,14 @@ uncompress_genomes:
 run:
 	@mkdir -p work
 	$(RUN)
+
+update_subm:
+	cd assets/var-genes-ro ; \
+	# /usr/bin/git submodule update --remote --merge ; \
+	/usr/bin/git fetch $(UPSTR_NAME) ; \
+	/usr/bin/git merge $(UPSTR_NAME)/$(UPSTR_BRANCH) ; \
+	cd .. ; \
+	/usr/bin/git status ; \
+	# TODO: Could add the rest of the steps here as well
+	# /usr/bin/git add assets/var-genes-ro
+	# /usr/bin/git push $(UPSTR_NAME) $(CURR_BRANCH)
