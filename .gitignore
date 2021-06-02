@@ -155,3 +155,7 @@ assets/adapters/*
 
 # Logs
 logs
+
+exp/*
+!exp/env.yml
+!exp/README.md
